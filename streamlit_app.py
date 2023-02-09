@@ -64,7 +64,7 @@ st.write(chapter_5)
 def export_to_docx():
 
 # Crear un nuevo documento de Word
-doc = docx.Document()
+    doc = docx.Document()
 
 # Agregar la tabla de contenido
 doc.add_heading("Tabla de contenido", 0)
