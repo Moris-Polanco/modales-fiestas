@@ -10,7 +10,7 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 def generate_text(prompt):
     completions = openai.Completion.create(
         engine="text-davinci-003",
-        prompt=prompt,
+        prompt = f"Escribe el contenido del capítulo {i+1} de un libro de género {genre} imitando al autor {author}:",
         max_tokens=2024,
         n=1,
         stop=None,
