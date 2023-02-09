@@ -1,6 +1,7 @@
 import openai
 import streamlit as st
 import os
+import re
 
 # Autenticación de OpenAI (oculta la clave en una variable de entorno)
 openai.api_key = os.environ.get("OPENAI_API_KEY")
@@ -19,78 +20,17 @@ def generate_text(prompt):
     message = completions.choices[0].text
     return message
 
-# Crear la aplicación de Streamlit
-st.title("Libro de buenos modales para ocasiones especiales")
+# Pida el título del libro
+st.header("Generador de libros de buenos modales")
+title = st.text_input("Introduce el título del libro:")
 
-# Tabla de contenido
-st.header("Tabla de contenido")
-st.write("1. Fiestas")
-st.write("2. Bodas")
-st.write("3. Funerales")
-st.write("4. Comidas especiales")
-st.write("5. Eventos formales")
+# Pida el número de capítulos
+num_chapters = st.number_input("Introduce el número de capítulos:")
 
-# Capítulo 1: Fiestas
-st.header("1. Fiestas")
-prompt = "Escribe un capítulo sobre buenos modales en fiestas"
-chapter_1 = generate_text(prompt)
-st.write(chapter_1)
-
-# Capítulo 2: Bodas
-st.header("2. Bodas")
-prompt = "Escribe un capítulo sobre buenos modales en bodas"
-chapter_2 = generate_text(prompt)
-st.write(chapter_2)
-
-# Capítulo 3: Funerales
-st.header("3. Funerales")
-prompt = "Escribe un capítulo sobre buenos modales en funerales"
-chapter_3 = generate_text(prompt)
-st.write(chapter_3)
-
-# Capítulo 4: Comidas especiales
-st.header("4. Comidas especiales")
-prompt = "Escribe un capítulo sobre buenos modales en comidas especiales"
-chapter_4 = generate_text(prompt)
-st.write(chapter_4)
-
-# Capítulo 5: Eventos formales
-st.header("5. Eventos formales")
-prompt = "Escribe un capítulo sobre buenos modales en eventos formales"
-chapter_5 = generate_text(prompt)
-st.write(chapter_5)
-
-# Exportar el resultado a un documento
-def export_to_docx():
-
-# Crear un nuevo documento de Word
-    doc = docx.Document()
-
-# Agregar la tabla de contenido
-doc.add_heading("Tabla de contenido", 0)
-doc.add_paragraph("1. Fiestas", style='List Number')
-doc.add_paragraph("2. Bodas", style='List Number')
-doc.add_paragraph("3. Funerales", style='List Number')
-doc.add_paragraph("4. Comidas especiales", style='List Number')
-doc.add_paragraph("5. Eventos formales", style='List Number')
-
-# Agregar los capítulos
-doc.add_heading("1. Fiestas", 1)
-doc.add_paragraph(chapter_1)
-doc.add_heading("2. Bodas", 1)
-doc.add_paragraph(chapter_2)
-doc.add_heading("3. Funerales", 1)
-doc.add_paragraph(chapter_3)
-doc.add_heading("4. Comidas especiales", 1)
-doc.add_paragraph(chapter_4)
-doc.add_heading("5. Eventos formales", 1)
-doc.add_paragraph(chapter_5)
-
-# Guardar el documento
-doc.save("libro_de_buenos_modales.docx")
-
-# Agregar un botón para exportar el resultado a un documento
-st.header("Exportar a un documento")
-if st.button("Exportar a un documento"):
-    export_to_docx()
-st.success("El documento se ha guardado como 'libro_de_buenos_modales.docx'")
+# Generar el libro
+if st.button("Generar libro"):
+    st.header(title)
+    for i in range(num_chapters):
+        prompt = f"Escribe el contenido del capítulo {i+1}:"
+        chapter = generate_text(prompt)
+        st.write(chapter)
