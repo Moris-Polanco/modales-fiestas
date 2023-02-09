@@ -60,7 +60,7 @@ prompt = "Escribe un capítulo sobre buenos modales en eventos formales"
 chapter_5 = generate_text(prompt)
 st.write(chapter_5)
 
-Exportar el resultado a un documento
+# Exportar el resultado a un documento
 def export_to_docx():
 
 # Crear un nuevo documento de Word
