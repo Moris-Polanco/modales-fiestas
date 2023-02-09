@@ -15,8 +15,7 @@ def generate_text(prompt):
         n=1,
         stop=None,
         temperature=0.7,
-        presence=author,
-        genre=genre
+        
     )
 
     message = completions.choices[0].text
