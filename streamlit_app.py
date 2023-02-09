@@ -44,6 +44,6 @@ if st.button("Generar libro"):
     for i in range(num_chapters):
         progress_bar.progress((i + 1) / num_chapters)
         prompt = f"Escribe el contenido del capítulo {i+1}:"
-        chapter = generate_text(prompt, genre, author)
+        chapter = generate_text(prompt)
         st.write(chapter)
     progress_bar.empty()
