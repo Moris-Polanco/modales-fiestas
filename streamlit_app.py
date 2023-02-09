@@ -7,7 +7,7 @@ import re
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Función para generar texto usando GPT-3
-def generate_text(prompt, genre, author):
+def generate_text(prompt):
     completions = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt,
