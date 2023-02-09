@@ -14,7 +14,7 @@ def generate_text(prompt):
         max_tokens=3024,
         n=1,
         stop=None,
-        temperature=0.5,
+        temperature=0.7,
     )
 
     message = completions.choices[0].text
@@ -32,7 +32,10 @@ num_chapters = int(num_chapters)
 # Generar el libro
 if st.button("Generar libro"):
     st.header(title)
+    progress_bar = st.progress(0)
     for i in range(num_chapters):
+        progress_bar.progress((i + 1) / num_chapters)
         prompt = f"Escribe el contenido del capítulo {i+1}:"
         chapter = generate_text(prompt)
         st.write(chapter)
+    progress_bar.empty()
