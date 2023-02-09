@@ -26,6 +26,8 @@ title = st.text_input("Introduce el título del libro:")
 
 # Pida el número de capítulos
 num_chapters = st.number_input("Introduce el número de capítulos:")
+num_chapters = int(num_chapters)
+for i in range(num_chapters):
 
 # Generar el libro
 if st.button("Generar libro"):
