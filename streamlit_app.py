@@ -92,5 +92,5 @@ doc.save("libro_de_buenos_modales.docx")
 # Agregar un botón para exportar el resultado a un documento
 st.header("Exportar a un documento")
 if st.button("Exportar a un documento"):
-export_to_docx()
+    export_to_docx()
 st.success("El documento se ha guardado como 'libro_de_buenos_modales.docx'")
