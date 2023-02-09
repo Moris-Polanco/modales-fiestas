@@ -1,15 +1,16 @@
 import openai
 import streamlit as st
+import os
 
-# Inicializar la API de OpenAI
-openai.api_key = "TU_API_KEY"
+# Autenticación de OpenAI (oculta la clave en una variable de entorno)
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Crear una función para hacer una llamada independiente a la API
 def generate_text(prompt):
     completions = openai.Completion.create(
-        engine="text-davinci-002",
+        engine="text-davinci-003",
         prompt=prompt,
-        max_tokens=1000,
+        max_tokens=2000,
         n=1,
         stop=None,
         temperature=0.5,
@@ -61,9 +62,6 @@ st.write(chapter_5)
 
 Exportar el resultado a un documento
 def export_to_docx():
-# Instalar la librería python-docx si todavía no está instalada
-!pip install python-docx
-import docx
 
 # Crear un nuevo documento de Word
 doc = docx.Document()
