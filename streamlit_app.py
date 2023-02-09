@@ -29,9 +29,9 @@ num_chapters = st.number_input("Introduce el número de capítulos:")
 
 
 # Generar el libro
-    if st.button("Generar libro"):
-        st.header(title)
-        for i in range(num_chapters):
-            prompt = f"Escribe el contenido del capítulo {i+1}:"
-            chapter = generate_text(prompt)
-            st.write(chapter)
+if st.button("Generar libro"):
+    st.header(title)
+    for i in range(num_chapters):
+        prompt = f"Escribe el contenido del capítulo {i+1}:"
+        chapter = generate_text(prompt)
+        st.write(chapter)
