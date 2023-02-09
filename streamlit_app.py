@@ -10,7 +10,7 @@ def generate_text(prompt):
     completions = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt,
-        max_tokens=2000,
+        max_tokens=3900,
         n=1,
         stop=None,
         temperature=0.5,
