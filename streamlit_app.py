@@ -6,27 +6,28 @@ import re
 # Autenticación de OpenAI (oculta la clave en una variable de entorno)
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
-# Crear una función para hacer una llamada independiente a la API
+# Función para generar texto usando GPT-3
 def generate_text(prompt):
     completions = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt,
-        max_tokens=3000,
+        max_tokens=3024,
         n=1,
         stop=None,
         temperature=0.5,
     )
 
     message = completions.choices[0].text
+    message = re.sub("[^0-9a-zA-Z]+", " ", message).strip()
     return message
 
 # Pida el título del libro
-st.header("Generador de libros de buenos modales")
+st.header("Generador de libros")
 title = st.text_input("Introduce el título del libro:")
 
 # Pida el número de capítulos
 num_chapters = st.number_input("Introduce el número de capítulos:")
-
+num_chapters = int(num_chapters)
 
 # Generar el libro
 if st.button("Generar libro"):
